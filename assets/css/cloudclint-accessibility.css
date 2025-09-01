@@ -1,0 +1,629 @@
+/**
+ * CloudClint 可用性和无障碍访问增强
+ * 遵循WCAG 2.1 AA标准，提升所有用户的使用体验
+ */
+
+/* ======================
+   焦点管理 - Focus Management
+   ====================== */
+
+/* 高对比度焦点指示器 */
+*:focus {
+  outline: 3px solid var(--cc-primary-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 美化的焦点样式 */
+.cc-focus-enhanced:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3),
+              0 0 0 6px rgba(59, 130, 246, 0.1);
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+/* 跳过链接 */
+.cc-skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--cc-primary-600);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 0 0 6px 6px;
+  font-weight: 600;
+  z-index: 10000;
+  transition: top 0.3s ease;
+}
+
+.cc-skip-link:focus {
+  top: 0;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* 焦点陷阱 */
+.cc-focus-trap {
+  position: relative;
+}
+
+.cc-focus-trap-active {
+  overflow: hidden;
+}
+
+/* ======================
+   键盘导航 - Keyboard Navigation
+   ====================== */
+
+/* 键盘可访问的下拉菜单 */
+.cc-dropdown[data-keyboard-open] .cc-dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 高亮当前选择项 */
+.cc-dropdown-item[aria-selected="true"] {
+  background: var(--cc-primary-100);
+  color: var(--cc-primary-800);
+}
+
+/* 键盘导航提示 */
+.cc-keyboard-hint {
+  position: absolute;
+  bottom: -24px;
+  left: 0;
+  font-size: 11px;
+  color: var(--cc-gray-500);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cc-focus-enhanced:focus + .cc-keyboard-hint,
+.cc-keyboard-hint:focus {
+  opacity: 1;
+}
+
+/* ======================
+   屏幕阅读器支持 - Screen Reader Support
+   ====================== */
+
+/* 仅对屏幕阅读器可见 */
+.cc-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* 在焦点时显示 */
+.cc-sr-only:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: inherit !important;
+  margin: inherit !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+  border: inherit !important;
+}
+
+/* 状态公告区域 */
+.cc-live-region {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ======================
+   高对比度模式 - High Contrast Mode
+   ====================== */
+
+@media (prefers-contrast: high) {
+  /* 增强边框对比度 */
+  .cc-device-card,
+  .cc-stats-card,
+  .cc-navbar,
+  .cc-footer {
+    border: 2px solid currentColor !important;
+  }
+  
+  /* 增强文本对比度 */
+  .cc-text-muted {
+    color: var(--cc-gray-700) !important;
+  }
+  
+  /* 增强背景对比度 */
+  .cc-bg-gray-50 {
+    background: white !important;
+  }
+  
+  /* 移除透明效果 */
+  .cc-navbar,
+  .cc-device-card,
+  .cc-stats-card {
+    background: white !important;
+    backdrop-filter: none !important;
+  }
+  
+  /* 增强按钮对比度 */
+  .cc-btn-primary {
+    background: var(--cc-primary-700) !important;
+    color: white !important;
+    border: 2px solid var(--cc-primary-900) !important;
+  }
+  
+  /* 增强链接对比度 */
+  a {
+    color: var(--cc-primary-700) !important;
+    text-decoration: underline !important;
+  }
+}
+
+/* ======================
+   动画偏好设置 - Animation Preferences
+   ====================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* 禁用所有动画 */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* 保留重要的状态变化 */
+  .cc-device-card:hover,
+  .cc-stats-card:hover {
+    transform: none !important;
+  }
+  
+  /* 保留焦点指示器 */
+  *:focus {
+    transition: box-shadow 0.2s ease !important;
+  }
+}
+
+/* ======================
+   触摸设备优化 - Touch Device Optimization
+   ====================== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* 增大触摸目标 */
+  .cc-btn,
+  .cc-filter-tab,
+  .cc-month-btn,
+  .cc-edit-btn,
+  .cc-delete-btn {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 12px !important;
+  }
+  
+  /* 移除悬停效果 */
+  .cc-device-card:hover,
+  .cc-stats-card:hover,
+  .cc-btn:hover {
+    transform: none !important;
+  }
+  
+  /* 增强触摸反馈 */
+  .cc-btn:active,
+  .cc-device-card:active,
+  .cc-stats-card:active {
+    transform: scale(0.98) !important;
+    transition: transform 0.1s ease !important;
+  }
+}
+
+/* ======================
+   字体和可读性 - Typography and Readability
+   ====================== */
+
+/* 确保最小字体大小 */
+.cc-text-xs {
+  font-size: max(12px, 0.75rem) !important;
+}
+
+.cc-text-sm {
+  font-size: max(14px, 0.875rem) !important;
+}
+
+/* 增强行高以提升可读性 */
+p, .cc-text-content {
+  line-height: 1.6 !important;
+}
+
+/* 长文本的最大宽度 */
+.cc-text-long {
+  max-width: 65ch;
+  line-height: 1.7;
+}
+
+/* 强调文本样式 */
+.cc-text-emphasis {
+  font-weight: 600;
+  color: var(--cc-gray-900);
+}
+
+/* ======================
+   表单可访问性 - Form Accessibility
+   ====================== */
+
+/* 必填字段指示器 */
+.cc-required::after {
+  content: ' *';
+  color: var(--cc-danger-500);
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+/* 表单错误状态 */
+.cc-form-error {
+  border: 2px solid var(--cc-danger-500) !important;
+  background: var(--cc-danger-50) !important;
+}
+
+.cc-form-error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3) !important;
+}
+
+/* 错误消息样式 */
+.cc-error-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cc-danger-700);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.cc-error-message::before {
+  content: '⚠';
+  font-weight: bold;
+}
+
+/* 成功状态 */
+.cc-form-success {
+  border: 2px solid var(--cc-success-500) !important;
+  background: var(--cc-success-50) !important;
+}
+
+.cc-success-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cc-success-700);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.cc-success-message::before {
+  content: '✓';
+  font-weight: bold;
+}
+
+/* ======================
+   颜色和对比度 - Color and Contrast
+   ====================== */
+
+/* 确保最小对比度比例 */
+.cc-text-light {
+  color: var(--cc-gray-700) !important; /* 提高对比度 */
+}
+
+.cc-text-muted {
+  color: var(--cc-gray-600) !important; /* 提高对比度 */
+}
+
+/* 状态颜色的高对比度版本 */
+.cc-status-high-contrast .cc-badge-success {
+  background: #006600 !important;
+  color: white !important;
+}
+
+.cc-status-high-contrast .cc-badge-danger {
+  background: #cc0000 !important;
+  color: white !important;
+}
+
+.cc-status-high-contrast .cc-badge-warning {
+  background: #996600 !important;
+  color: white !important;
+}
+
+/* ======================
+   响应式可访问性 - Responsive Accessibility
+   ====================== */
+
+/* 大屏幕优化 */
+@media (min-width: 1200px) {
+  .cc-container {
+    max-width: 100%;
+  }
+  
+  /* 增大间距以便操作 */
+  .cc-device-card,
+  .cc-stats-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* 小屏幕优化 */
+@media (max-width: 768px) {
+  /* 增大触摸目标 */
+  .cc-navbar-user .cc-user-avatar {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  /* 简化布局减少认知负荷 */
+  .cc-device-card .cc-device-basic-info {
+    grid-template-columns: 1fr;
+  }
+  
+  /* 增大文字以提升可读性 */
+  .cc-device-title {
+    font-size: 1.125rem;
+  }
+}
+
+/* ======================
+   暗色主题可访问性 - Dark Theme Accessibility
+   ====================== */
+
+.dark-theme {
+  /* 确保暗色主题下的对比度 */
+  --cc-text-primary: #f9fafb;
+  --cc-text-secondary: #e5e7eb;
+  --cc-text-muted: #d1d5db;
+}
+
+/* 暗黑模式基础样式 */
+.dark-theme body {
+  background: #111827 !important;
+  color: #f9fafb !important;
+}
+
+.dark-theme {
+  background: #111827 !important;
+  color: #f9fafb !important;
+}
+
+.dark-theme .cc-text-muted {
+  color: var(--cc-text-muted) !important;
+}
+
+/* 暗黑模式下的表单元素 */
+.dark-theme input,
+.dark-theme textarea,
+.dark-theme select {
+  background: rgba(31, 41, 55, 0.8) !important;
+  color: #f9fafb !important;
+  border-color: rgba(55, 65, 81, 0.5) !important;
+}
+
+.dark-theme input:focus,
+.dark-theme textarea:focus,
+.dark-theme select:focus {
+  background: rgba(31, 41, 55, 0.9) !important;
+  border-color: #3b82f6 !important;
+}
+
+/* 暗黑模式下的按钮 */
+.dark-theme .btn-primary {
+  background: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-secondary {
+  background: rgba(55, 65, 81, 0.8) !important;
+  border-color: rgba(55, 65, 81, 0.8) !important;
+  color: #e5e7eb !important;
+}
+
+/* 暗黑模式下的模态框 */
+.dark-theme .modal-content {
+  background: rgba(17, 24, 39, 0.95) !important;
+  color: #f9fafb !important;
+  border-color: rgba(55, 65, 81, 0.3) !important;
+}
+
+.dark-theme .modal-header {
+  border-bottom-color: rgba(55, 65, 81, 0.3) !important;
+}
+
+.dark-theme .modal-footer {
+  border-top-color: rgba(55, 65, 81, 0.3) !important;
+}
+
+/* 暗黑模式下的表格 */
+.dark-theme table {
+  color: #f9fafb !important;
+}
+
+.dark-theme .table {
+  --bs-table-bg: rgba(17, 24, 39, 0.5) !important;
+  --bs-table-color: #f9fafb !important;
+  --bs-table-border-color: rgba(55, 65, 81, 0.3) !important;
+}
+
+.dark-theme .table-striped > tbody > tr:nth-of-type(odd) > td {
+  background: rgba(31, 41, 55, 0.3) !important;
+}
+
+.dark-theme .cc-device-card,
+.dark-theme .cc-stats-card {
+  border: 1px solid var(--cc-gray-600) !important;
+}
+
+/* ======================
+   打印样式 - Print Styles
+   ====================== */
+
+@media print {
+  /* 移除交互元素 */
+  .cc-navbar,
+  .cc-footer,
+  .cc-preloader,
+  .cc-modal,
+  .cc-dropdown-menu {
+    display: none !important;
+  }
+  
+  /* 优化打印布局 */
+  .cc-device-card,
+  .cc-stats-card {
+    break-inside: avoid;
+    border: 1px solid #000 !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+  
+  /* 确保文本可读性 */
+  body {
+    color: #000 !important;
+    background: white !important;
+  }
+  
+  /* 显示链接地址 */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}
+
+/* ======================
+   辅助技术支持 - Assistive Technology Support
+   ====================== */
+
+/* 为表格添加标题 */
+.cc-data-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.cc-data-table th,
+.cc-data-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--cc-gray-200);
+}
+
+.cc-data-table th {
+  background: var(--cc-gray-50);
+  font-weight: 600;
+}
+
+/* 状态公告 */
+.cc-status-announcement {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: var(--cc-primary-600);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: var(--cc-shadow-lg);
+  z-index: 9999;
+  max-width: 300px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.cc-status-announcement.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 进度指示器 */
+.cc-progress-indicator {
+  position: relative;
+}
+
+.cc-progress-indicator::after {
+  content: attr(aria-valuenow) '%';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cc-gray-700);
+}
+
+/* ======================
+   语言和本地化支持 - Language and Localization
+   ====================== */
+
+/* 右到左语言支持 */
+[dir="rtl"] .cc-navbar-content {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .cc-device-card::before {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .cc-stats-content {
+  flex-direction: row-reverse;
+}
+
+/* 文本方向适配 */
+.cc-text-direction-adaptive {
+  text-align: start;
+}
+
+/* ======================
+   辅助功能快捷键 - Accessibility Shortcuts
+   ====================== */
+
+/* 快捷键提示 */
+.cc-shortcut-hint {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  background: var(--cc-gray-900);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.cc-has-shortcut:focus .cc-shortcut-hint,
+.cc-has-shortcut:hover .cc-shortcut-hint {
+  opacity: 1;
+}
+
+/* 快捷键样式 */
+.cc-kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--cc-gray-600);
+  background: var(--cc-gray-100);
+  border: 1px solid var(--cc-gray-300);
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}

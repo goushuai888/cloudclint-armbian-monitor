@@ -1,0 +1,968 @@
+/**
+ * CloudClint 高级交互特性
+ * 提供丰富的用户交互体验和高级功能
+ */
+
+/* ======================
+   智能提示系统 - Smart Tooltip System
+   ====================== */
+
+.cc-tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cc-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cc-gray-900);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: var(--cc-z-tooltip);
+  pointer-events: none;
+  margin-bottom: 8px;
+}
+
+.cc-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--cc-gray-900);
+}
+
+.cc-tooltip-container:hover .cc-tooltip,
+.cc-tooltip-container:focus .cc-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* 多向提示框 */
+.cc-tooltip.cc-tooltip-top {
+  bottom: 100%;
+  margin-bottom: 8px;
+}
+
+.cc-tooltip.cc-tooltip-bottom {
+  top: 100%;
+  bottom: auto;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.cc-tooltip.cc-tooltip-left {
+  right: 100%;
+  left: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  margin-right: 8px;
+  margin-bottom: 0;
+}
+
+.cc-tooltip.cc-tooltip-right {
+  left: 100%;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  margin-left: 8px;
+  margin-bottom: 0;
+}
+
+/* ======================
+   智能搜索建议 - Smart Search Suggestions
+   ====================== */
+
+.cc-search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--cc-gray-200);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: var(--cc-shadow-lg);
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: var(--cc-z-dropdown);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.3s ease;
+}
+
+.cc-search-suggestions.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.cc-search-suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--cc-gray-100);
+}
+
+.cc-search-suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.cc-search-suggestion-item:hover,
+.cc-search-suggestion-item.active {
+  background: var(--cc-primary-50);
+  color: var(--cc-primary-700);
+}
+
+.cc-search-suggestion-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cc-gray-100);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--cc-gray-600);
+}
+
+.cc-search-suggestion-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cc-search-suggestion-meta {
+  font-size: 12px;
+  color: var(--cc-gray-500);
+}
+
+/* ======================
+   拖拽排序 - Drag and Drop Sorting
+   ====================== */
+
+.cc-sortable {
+  position: relative;
+}
+
+.cc-sortable-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: grab;
+}
+
+.cc-sortable-item:active {
+  cursor: grabbing;
+}
+
+.cc-sortable-item.dragging {
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: var(--cc-shadow-floating);
+  z-index: var(--cc-z-overlay);
+  opacity: 0.9;
+}
+
+.cc-sortable-placeholder {
+  background: var(--cc-primary-100);
+  border: 2px dashed var(--cc-primary-400);
+  border-radius: 8px;
+  height: 60px;
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cc-primary-600);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cc-drop-zone {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cc-drop-zone.drag-over {
+  background: var(--cc-primary-50);
+  border-color: var(--cc-primary-400);
+  transform: scale(1.02);
+}
+
+.cc-drop-indicator {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--cc-primary-500);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cc-drop-indicator.show {
+  opacity: 1;
+}
+
+/* ======================
+   右键菜单 - Context Menu
+   ====================== */
+
+.cc-context-menu {
+  position: fixed;
+  background: white;
+  border: 1px solid var(--cc-gray-200);
+  border-radius: 8px;
+  box-shadow: var(--cc-shadow-floating);
+  padding: 4px 0;
+  min-width: 160px;
+  z-index: var(--cc-z-modal);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transition: all 0.2s ease;
+}
+
+.cc-context-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.cc-context-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--cc-gray-700);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cc-context-menu-item:hover {
+  background: var(--cc-gray-50);
+  color: var(--cc-gray-900);
+}
+
+.cc-context-menu-item.disabled {
+  color: var(--cc-gray-400);
+  cursor: not-allowed;
+}
+
+.cc-context-menu-item.disabled:hover {
+  background: transparent;
+}
+
+.cc-context-menu-separator {
+  height: 1px;
+  background: var(--cc-gray-200);
+  margin: 4px 0;
+}
+
+.cc-context-menu-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* ======================
+   多选操作 - Multi-Select Operations
+   ====================== */
+
+.cc-selectable {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.cc-selectable.selected {
+  background: var(--cc-primary-50);
+  border-color: var(--cc-primary-400);
+  transform: scale(1.02);
+}
+
+.cc-selection-checkbox {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 2px solid var(--cc-gray-300);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.cc-selectable:hover .cc-selection-checkbox,
+.cc-selectable.selected .cc-selection-checkbox {
+  opacity: 1;
+}
+
+.cc-selectable.selected .cc-selection-checkbox {
+  background: var(--cc-primary-500);
+  border-color: var(--cc-primary-500);
+  color: white;
+}
+
+.cc-selection-toolbar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: white;
+  border: 1px solid var(--cc-gray-200);
+  border-radius: 12px;
+  box-shadow: var(--cc-shadow-floating);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: var(--cc-z-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.cc-selection-toolbar.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.cc-selection-count {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cc-primary-600);
+}
+
+.cc-selection-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ======================
+   快捷键提示 - Keyboard Shortcuts
+   ====================== */
+
+.cc-shortcut-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: var(--cc-z-modal);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cc-shortcut-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cc-shortcut-panel {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.cc-shortcut-overlay.show .cc-shortcut-panel {
+  transform: scale(1);
+}
+
+.cc-shortcut-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--cc-gray-900);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.cc-shortcut-section {
+  margin-bottom: 24px;
+}
+
+.cc-shortcut-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cc-gray-800);
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--cc-primary-100);
+  padding-bottom: 8px;
+}
+
+.cc-shortcut-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--cc-gray-100);
+}
+
+.cc-shortcut-item:last-child {
+  border-bottom: none;
+}
+
+.cc-shortcut-description {
+  font-size: 14px;
+  color: var(--cc-gray-700);
+}
+
+.cc-shortcut-keys {
+  display: flex;
+  gap: 4px;
+}
+
+.cc-shortcut-key {
+  background: var(--cc-gray-100);
+  border: 1px solid var(--cc-gray-300);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cc-gray-700);
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* ======================
+   实时状态指示器 - Live Status Indicators
+   ====================== */
+
+.cc-live-indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cc-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cc-success-500);
+  position: relative;
+}
+
+.cc-live-dot::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  background: var(--cc-success-500);
+  opacity: 0.3;
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.cc-live-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cc-success-600);
+}
+
+.cc-live-indicator.offline .cc-live-dot {
+  background: var(--cc-gray-400);
+}
+
+.cc-live-indicator.offline .cc-live-dot::before {
+  background: var(--cc-gray-400);
+  animation: none;
+}
+
+.cc-live-indicator.offline .cc-live-text {
+  color: var(--cc-gray-500);
+}
+
+/* ======================
+   滑动操作 - Swipe Actions
+   ====================== */
+
+.cc-swipeable {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.cc-swipe-content {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+  background: white;
+}
+
+.cc-swipe-actions {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  z-index: 0;
+}
+
+.cc-swipe-actions.left {
+  left: 0;
+  background: linear-gradient(90deg, var(--cc-success-500), var(--cc-success-600));
+}
+
+.cc-swipe-actions.right {
+  right: 0;
+  background: linear-gradient(90deg, var(--cc-danger-500), var(--cc-danger-600));
+}
+
+.cc-swipe-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  height: 100%;
+  min-width: 80px;
+}
+
+.cc-swipe-action i {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+/* ======================
+   智能悬浮操作栏 - Smart Floating Action Bar
+   ====================== */
+
+.cc-fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: var(--cc-z-overlay);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.cc-fab {
+  width: 56px;
+  height: 56px;
+  background: var(--cc-primary-500);
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: var(--cc-shadow-floating);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cc-fab:hover {
+  background: var(--cc-primary-600);
+  transform: scale(1.1);
+  box-shadow: var(--cc-shadow-deep);
+}
+
+.cc-fab::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.cc-fab:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.cc-fab-mini {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.5);
+  transition: all 0.3s ease;
+}
+
+.cc-fab-container.expanded .cc-fab-mini {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.cc-fab-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.cc-fab-container.expanded .cc-fab-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ======================
+   智能筛选器 - Smart Filters
+   ====================== */
+
+.cc-smart-filter {
+  position: relative;
+  display: inline-block;
+}
+
+.cc-filter-preview {
+  background: var(--cc-gray-50);
+  border: 1px solid var(--cc-gray-200);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--cc-gray-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cc-filter-preview:hover {
+  background: var(--cc-gray-100);
+  border-color: var(--cc-gray-300);
+}
+
+$1
+
+/* ======================
+   可编辑字段样式 - Editable Fields
+   ====================== */
+
+.cc-editable-field {
+  position: relative;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 24px;
+}
+
+.cc-editable-field:hover {
+  background-color: var(--cc-gray-50);
+  border: 1px solid var(--cc-gray-200);
+}
+
+.cc-editable-field:hover .cc-edit-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cc-edit-icon {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.2s ease;
+  color: var(--cc-gray-400);
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.cc-editable-field:focus {
+  outline: 2px solid var(--cc-primary-200);
+  outline-offset: 1px;
+}
+
+/* 深色主题支持 */
+.dark-theme .cc-editable-field:hover {
+  background-color: var(--cc-gray-800);
+  border-color: var(--cc-gray-600);
+}
+
+.dark-theme .cc-edit-icon {
+  color: var(--cc-gray-500);
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .cc-editable-field {
+    padding: 6px 10px;
+    min-height: 32px;
+  }
+  
+  .cc-edit-icon {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+.cc-filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid var(--cc-gray-200);
+  border-radius: 8px;
+  box-shadow: var(--cc-shadow-lg);
+  padding: 16px;
+  min-width: 280px;
+  z-index: var(--cc-z-dropdown);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.3s ease;
+}
+
+.cc-smart-filter.open .cc-filter-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.cc-filter-group {
+  margin-bottom: 16px;
+}
+
+.cc-filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.cc-filter-group-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cc-gray-800);
+  margin-bottom: 8px;
+}
+
+.cc-filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cc-filter-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.cc-filter-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--cc-gray-300);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cc-filter-checkbox.checked {
+  background: var(--cc-primary-500);
+  border-color: var(--cc-primary-500);
+  color: white;
+}
+
+.cc-filter-option-label {
+  font-size: 14px;
+  color: var(--cc-gray-700);
+  flex: 1;
+}
+
+.cc-filter-option-count {
+  font-size: 12px;
+  color: var(--cc-gray-500);
+  background: var(--cc-gray-100);
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+/* ======================
+   响应式高级交互 - Responsive Advanced Interactions
+   ====================== */
+
+@media (max-width: 768px) {
+  .cc-fab-container {
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .cc-fab {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  
+  .cc-fab-mini {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .cc-selection-toolbar {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+  }
+  
+  .cc-selection-toolbar.show {
+    transform: translateY(0);
+  }
+  
+  .cc-context-menu {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    top: auto;
+    transform: translateY(100px);
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .cc-context-menu.show {
+    transform: translateY(0);
+  }
+  
+  .cc-shortcut-panel {
+    margin: 20px;
+    max-height: calc(100vh - 40px);
+    padding: 24px;
+  }
+  
+  .cc-filter-dropdown {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 16px 16px 0 0;
+    max-width: none;
+    min-width: auto;
+    padding: 24px;
+    transform: translateY(100%);
+  }
+  
+  .cc-smart-filter.open .cc-filter-dropdown {
+    transform: translateY(0);
+  }
+}
+
+/* ======================
+   暗色主题适配 - Dark Theme Adaptation
+   ====================== */
+
+.dark-theme .cc-tooltip {
+  background: var(--cc-gray-700);
+  color: var(--cc-gray-100);
+}
+
+.dark-theme .cc-tooltip::after {
+  border-top-color: var(--cc-gray-700);
+}
+
+.dark-theme .cc-search-suggestions {
+  background: var(--cc-gray-800);
+  border-color: var(--cc-gray-600);
+}
+
+.dark-theme .cc-search-suggestion-item {
+  border-bottom-color: var(--cc-gray-700);
+}
+
+.dark-theme .cc-search-suggestion-item:hover {
+  background: var(--cc-gray-700);
+}
+
+.dark-theme .cc-context-menu {
+  background: var(--cc-gray-800);
+  border-color: var(--cc-gray-600);
+}
+
+.dark-theme .cc-context-menu-item {
+  color: var(--cc-gray-300);
+}
+
+.dark-theme .cc-context-menu-item:hover {
+  background: var(--cc-gray-700);
+  color: var(--cc-gray-100);
+}
+
+.dark-theme .cc-selection-toolbar {
+  background: var(--cc-gray-800);
+  border-color: var(--cc-gray-600);
+}
+
+.dark-theme .cc-shortcut-panel {
+  background: var(--cc-gray-800);
+  color: var(--cc-gray-100);
+}
+
+.dark-theme .cc-filter-dropdown {
+  background: var(--cc-gray-800);
+  border-color: var(--cc-gray-600);
+}

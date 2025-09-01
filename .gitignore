@@ -1,0 +1,90 @@
+# 敏感配置文件
+config/database.php
+config/config.php
+.env
+.env.local
+
+# 日志文件
+*.log
+logs/
+log/
+
+# 缓存文件
+cache/
+*.cache
+
+# 临时文件
+*.tmp
+*.temp
+~*
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 依赖目录
+node_modules/
+vendor/
+
+# 构建输出
+dist/
+build/
+
+# 数据库备份
+*.sql
+*.db
+*.sqlite
+
+# 上传文件目录（如果有）
+uploads/
+files/
+
+# 云部署相关
+.vercel/
+.netlify/
+
+# Python相关
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+uv-x86_64-unknown-linux-gnu/
+
+# Claude相关
+.claude/settings.local.json
+
+# 旧的重复CSS文件
+assets/css/device-card-enhanced.css
+assets/css/device-display-optimized.css
+assets/css/device-grid-enhanced.css
+assets/css/device-grid-layout.css
+assets/css/device-horizontal-optimized.css
+assets/css/device-refinements.css
+assets/css/device-space-optimized.css
+assets/css/enhanced-grid-layout.css
+assets/css/fix-selection-box.css
+assets/css/modal-z-index-fix.css
+assets/css/popup-layer-fix.css
+assets/css/vertical-spacing-optimized.css
+assets/css/components-glassmorphism.css
+assets/css/modern-dashboard.css
+
+# 旧的重复JS文件  
+assets/js/device-actions.js
+assets/js/device-card-enhanced.js
+assets/js/device-interactions.js
+assets/js/device-modal.js
+assets/js/device-utils.js
+assets/js/date-filter.js
+assets/js/smart-refresh.js
+
+# 其他
+*.bak
+*.orig

@@ -1,0 +1,782 @@
+/**
+ * CloudClint 移动端优化样式
+ * 专注于移动设备体验优化和触摸设备适配
+ */
+
+/* ======================
+   移动端基础设置 - Mobile Foundation
+   ====================== */
+
+/* 移动端特有的基础优化 */
+@media (max-width: 768px) {
+  html {
+    /* 禁用文本自动调整大小 */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  body {
+    /* 禁用回弹效果和过度滚动 */
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+    
+    /* 优化触摸延迟 */
+    touch-action: manipulation;
+  }
+}
+
+/* ======================
+   触摸优化 - Touch Optimization
+   ====================== */
+
+/* 触摸目标最小尺寸 */
+@media (hover: none) and (pointer: coarse) {
+  .cc-btn,
+  .cc-filter-tab,
+  .cc-month-btn,
+  .cc-edit-btn,
+  .cc-delete-btn,
+  .cc-footer-btn,
+  .cc-navbar-brand,
+  .cc-user-avatar {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 12px !important;
+  }
+  
+  /* 移除悬停效果 */
+  .cc-device-card:hover,
+  .cc-stats-card:hover,
+  .cc-btn:hover {
+    transform: none !important;
+    box-shadow: var(--cc-shadow-lg) !important;
+  }
+  
+  /* 增强触摸反馈 */
+  .cc-btn:active,
+  .cc-device-card:active,
+  .cc-stats-card:active {
+    transform: scale(0.98) !important;
+    transition: transform 0.1s ease !important;
+  }
+  
+  /* 搜索框触摸优化 */
+  .cc-search-input {
+    min-height: 44px !important;
+    padding: 10px 12px !important;
+  }
+  
+  .cc-search-icon-wrapper {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* ======================
+   移动端导航 - Mobile Navigation
+   ====================== */
+
+@media (max-width: 768px) {
+  .cc-navbar {
+    padding: 8px 16px;
+    height: auto;
+    min-height: 64px;
+  }
+  
+  .cc-navbar-container {
+    padding: 8px 0;
+    min-height: 48px;
+  }
+  
+  .cc-navbar-brand {
+    font-size: 1.125rem;
+    gap: 8px;
+  }
+  
+  .cc-navbar-brand-icon {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  
+  .cc-navbar-content {
+    gap: 12px;
+  }
+  
+  .cc-user-avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+/* 移动端搜索框 */
+@media (max-width: 768px) {
+  .cc-navbar-search {
+    order: -1;
+    flex: 1;
+    max-width: none;
+  }
+  
+  .cc-search-input-group {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .cc-search-input {
+    font-size: 16px; /* 防止iOS缩放 */
+  }
+  
+  /* 移动端搜索收起状态 */
+  .cc-navbar-search.mobile-mode.collapsed {
+    flex: 0 0 auto;
+    width: 44px;
+  }
+  
+  .cc-navbar-search.mobile-mode.expanded {
+    flex: 1;
+    max-width: calc(100% - 60px);
+  }
+}
+
+/* ======================
+   移动端卡片 - Mobile Cards
+   ====================== */
+
+@media (max-width: 768px) {
+  .cc-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .cc-stats-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .cc-stats-content {
+    gap: 12px;
+  }
+  
+  .cc-stats-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+  }
+  
+  .cc-stats-number {
+    font-size: 1.5rem;
+  }
+  
+  .cc-stats-label {
+    font-size: 11px;
+  }
+}
+
+/* 移动端设备卡片 - 优化版 */
+@media (max-width: 768px) {
+  .cc-devices-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    margin: 0 0 1rem 0 !important;
+  }
+  
+  .cc-device-card {
+    border-radius: 16px;
+    min-height: auto !important;
+    margin: 0 !important;
+    z-index: auto !important;
+    position: relative !important;
+  }
+  
+  .cc-device-header {
+    padding: 10px 12px !important;
+  }
+  
+  .cc-device-body {
+    padding: 10px 12px !important;
+  }
+  
+  .cc-device-footer {
+    padding: 10px 12px !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .cc-device-basic-info {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  
+  .cc-resources-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  
+  .cc-device-actions {
+    justify-content: center;
+  }
+  
+  .cc-device-name {
+    font-size: 15px !important;
+  }
+  
+  .cc-device-info-value {
+    font-size: 13px !important;
+  }
+}
+
+/* 平板端设备卡片 */
+@media (min-width: 769px) and (max-width: 991px) {
+  .cc-devices-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+    gap: 12px !important;
+  }
+}
+
+/* ======================
+   移动端表单 - Mobile Forms
+   ====================== */
+
+@media (max-width: 768px) {
+  .cc-form-input,
+  .cc-form-textarea,
+  .cc-filter-select {
+    font-size: 16px; /* 防止iOS缩放 */
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+  
+  .cc-form-label {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  
+  .cc-form-group {
+    margin-bottom: 20px;
+  }
+}
+
+/* ======================
+   移动端筛选器 - Mobile Filters
+   ====================== */
+
+@media (max-width: 768px) {
+  .cc-filter-tabs {
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .cc-filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .cc-filter-tab {
+    padding: 8px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  
+  .cc-advanced-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .cc-filter-group {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .cc-filter-select {
+    min-width: 120px;
+    flex: 1;
+    margin-left: 12px;
+  }
+}
+
+/* 移动端时间筛选器 */
+@media (max-width: 768px) {
+  .cc-filter-trigger-section {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .cc-filter-trigger-btn {
+    padding: 12px 16px;
+    justify-content: center;
+    font-size: 14px;
+  }
+  
+  .cc-clear-filters-compact-btn {
+    align-self: center;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ======================
+   移动端页脚 - Mobile Footer
+   ====================== */
+
+@media (max-width: 768px) {
+  .cc-footer {
+    padding: 32px 0;
+  }
+  
+  .cc-footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 16px;
+    gap: 24px;
+  }
+  
+  .cc-footer-section {
+    align-items: center;
+  }
+  
+  .cc-footer-links {
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .cc-footer-meta {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .cc-footer-separator {
+    display: none;
+  }
+  
+  .cc-footer-brand {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+  }
+  
+  .cc-footer-actions {
+    gap: 8px;
+  }
+  
+  .cc-footer-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 12px;
+  }
+}
+
+/* ======================
+   移动端模态框 - Mobile Modals
+   ====================== */
+
+@media (max-width: 768px) {
+  #ccCurrentModal.cc-modal {
+    padding: 16px !important;
+  }
+  
+  #ccCurrentModal .cc-modal-content {
+    width: 100% !important;
+    max-width: calc(100vw - 32px) !important;
+    max-height: calc(100vh - 32px) !important;
+    margin: 0 !important;
+  }
+  
+  #ccCurrentModal .cc-modal-header,
+  #ccCurrentModal .cc-modal-body,
+  #ccCurrentModal .cc-modal-footer {
+    padding: 16px !important;
+  }
+  
+  #ccCurrentModal .cc-modal-title {
+    font-size: 1.125rem !important;
+  }
+  
+  #ccCurrentModal .cc-modal-footer {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  
+  #ccCurrentModal .cc-btn-primary,
+  #ccCurrentModal .cc-btn-secondary,
+  #ccCurrentModal .cc-btn-danger {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 10px 12px !important;
+  }
+  
+  #ccCurrentModal .cc-form-input,
+  #ccCurrentModal .cc-form-textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* ======================
+   移动端日期选择器 - Mobile Date Picker
+   ====================== */
+
+@media (max-width: 768px) {
+  .cc-date-filter-popup {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+    transform: translateY(100%) !important;
+    z-index: 2147483647 !important;
+  }
+  
+  .cc-date-filter-popup.show {
+    transform: translateY(0) !important;
+  }
+  
+  .cc-date-filter-modal {
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .cc-date-filter-modal .cc-date-filter-header {
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fafbfc;
+  }
+  
+  .cc-date-filter-modal .cc-quick-date-btn {
+    padding: 12px 8px;
+    font-size: 12px;
+    min-height: 48px;
+  }
+  
+  .cc-date-filter-modal .cc-precise-date-picker {
+    padding: 16px;
+  }
+  
+  .cc-date-filter-modal .cc-year-selector {
+    max-width: none;
+    height: 64px;
+    min-width: 280px;
+  }
+  
+  .cc-date-filter-modal .cc-year-nav-btn {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+  }
+  
+  .cc-date-filter-modal .cc-year-display {
+    font-size: 1.25rem;
+    padding: 8px 12px;
+    min-width: 0;
+    flex: 1;
+    white-space: nowrap;
+    overflow: visible;
+  }
+  
+  .cc-date-filter-modal .cc-month-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  
+  .cc-date-filter-modal .cc-month-btn {
+    min-height: 56px;
+    padding: 8px 4px;
+  }
+  
+  .cc-date-filter-modal .cc-filter-status {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    margin: 0;
+    border-radius: 0;
+    padding: 16px;
+  }
+}
+
+/* ======================
+   横屏模式优化 - Landscape Optimization
+   ====================== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .cc-navbar {
+    min-height: 56px;
+  }
+  
+  .cc-navbar-container {
+    padding: 4px 0;
+    min-height: 40px;
+  }
+  
+  .cc-user-avatar {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .cc-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .cc-date-filter-modal .cc-month-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* ======================
+   小屏设备优化 - Small Screen Optimization
+   ====================== */
+
+@media (max-width: 480px) {
+  .cc-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .cc-stats-card {
+    padding: 12px;
+  }
+  
+  .cc-stats-content {
+    gap: 8px;
+  }
+  
+  .cc-stats-icon {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  
+  .cc-stats-number {
+    font-size: 1.25rem;
+  }
+  
+  .cc-device-header,
+  .cc-device-body,
+  .cc-device-footer {
+    padding: 12px;
+  }
+  
+  .cc-navbar {
+    min-height: 56px;
+  }
+  
+  .cc-navbar-brand {
+    font-size: 1rem;
+  }
+  
+  .cc-navbar-brand-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.875rem;
+  }
+  
+  /* 小屏幕年份选择器优化 */
+  .cc-date-filter-modal .cc-year-selector {
+    min-width: 260px;
+    height: 60px;
+  }
+  
+  .cc-date-filter-modal .cc-year-nav-btn {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .cc-date-filter-modal .cc-year-display {
+    font-size: 1.125rem;
+    padding: 6px 10px;
+  }
+}
+
+/* ======================
+   性能优化 - Performance Optimization
+   ====================== */
+
+/* 移动端减少动画 */
+@media (max-width: 768px) {
+  .cc-device-card,
+  .cc-stats-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .cc-device-card:hover,
+  .cc-stats-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* 减少运动偏好时的移动端优化 */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .cc-device-card,
+  .cc-stats-card,
+  .cc-btn {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .cc-device-card:hover,
+  .cc-stats-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ======================
+   移动端特定交互 - Mobile Specific Interactions
+   ====================== */
+
+/* 移动端长按效果 */
+@media (hover: none) and (pointer: coarse) {
+  .cc-device-card,
+  .cc-stats-card {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+
+/* 移动端滚动优化 */
+@media (max-width: 768px) {
+  .cc-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .cc-devices-grid,
+  .cc-stats-grid {
+    margin-bottom: 24px;
+  }
+  
+  /* 优化滚动性能 */
+  .cc-device-card,
+  .cc-stats-card {
+    will-change: transform;
+    contain: layout style paint;
+  }
+}
+
+/* ======================
+   iOS Safari 特定优化 - iOS Safari Specific
+   ====================== */
+
+/* iOS Safari 底部安全区域 */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  @media (max-width: 768px) {
+    .cc-footer {
+      padding-bottom: calc(32px + env(safe-area-inset-bottom));
+    }
+    
+    .cc-date-filter-popup .cc-filter-status {
+      padding-bottom: calc(16px + env(safe-area-inset-bottom));
+    }
+    
+    #ccCurrentModal.cc-modal {
+      padding-bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+    }
+  }
+}
+
+/* iOS Safari 视口高度修复 */
+@media (max-width: 768px) {
+  .cc-date-filter-popup {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+}
+
+/* ======================
+   Android 特定优化 - Android Specific
+   ====================== */
+
+/* Android 键盘弹出优化 */
+@media (max-width: 768px) {
+  .cc-modal-content {
+    margin-bottom: 0 !important;
+    max-height: calc(100vh - 32px) !important;
+  }
+  
+  /* Android 浏览器地址栏自动隐藏优化 */
+  @media (max-height: 600px) {
+    .cc-date-filter-popup {
+      max-height: 90vh;
+    }
+  }
+}
+
+/* ======================
+   暗色主题移动端适配 - Dark Theme Mobile
+   ====================== */
+
+@media (max-width: 768px) {
+  .dark-theme .cc-navbar {
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(12px);
+  }
+  
+  .dark-theme .cc-search-input-group {
+    background: rgba(31, 41, 55, 0.9);
+    border-color: rgba(55, 65, 81, 0.5);
+  }
+  
+  .dark-theme .cc-search-input {
+    background: transparent;
+    color: #f9fafb;
+  }
+  
+  .dark-theme .cc-search-input::placeholder {
+    color: #9ca3af;
+  }
+  
+  .dark-theme .cc-stats-card,
+  .dark-theme .cc-device-card {
+    background: rgba(17, 24, 39, 0.9);
+    border-color: rgba(55, 65, 81, 0.3);
+  }
+  
+  .dark-theme .cc-footer {
+    background: rgba(17, 24, 39, 0.95);
+    border-top-color: rgba(55, 65, 81, 0.3);
+  }
+}
+
+/* ======================
+   设备底部移动端优化 - Device Footer Mobile Optimization
+   ====================== */
+@media (max-width: 768px) {
+  .cc-device-footer {
+    padding: 0.375rem 0.75rem;
+    min-height: 2.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .cc-device-meta {
+    font-size: 0.625rem;
+    gap: 0.25rem;
+  }
+  
+  .cc-btn-sm {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.8125rem;
+    min-height: 2rem;
+    touch-action: manipulation;
+  }
+  
+  .cc-device-actions {
+    gap: 0.5rem;
+  }
+}

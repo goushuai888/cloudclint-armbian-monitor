@@ -1,0 +1,324 @@
+/* 时间筛选弹窗修复样式 */
+
+/* 弹窗内容区域 */
+.cc-date-filter-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 弹窗头部 */
+.cc-date-filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+  border-radius: 20px 20px 0 0;
+  margin: 0;
+  border-bottom: none;
+}
+
+.cc-date-filter-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cc-close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cc-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* 年份选择区域 */
+.cc-year-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cc-year-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.cc-year-display {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1976d2;
+  min-width: 80px;
+  text-align: center;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, rgba(25, 118, 210, 0.1), rgba(25, 118, 210, 0.05));
+  border-radius: 8px;
+  border: 1px solid rgba(25, 118, 210, 0.2);
+}
+
+.cc-year-nav-btn {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 8px;
+  color: #1976d2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.cc-year-nav-btn:hover {
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  color: white;
+  transform: scale(1.1);
+}
+
+.cc-year-quick-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.cc-quick-year-btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 8px;
+  color: #475569;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.cc-quick-year-btn:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #3730a3;
+}
+
+.cc-quick-year-btn.active {
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  border-color: #1976d2;
+  color: white;
+}
+
+/* 月份选择区域 */
+.cc-month-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.cc-month-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .cc-month-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* 月份按钮 */
+.cc-month-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  min-height: 50px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+.cc-month-btn:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #3730a3;
+  transform: translateY(-2px);
+}
+
+.cc-month-btn.selected {
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  border-color: #1976d2;
+  color: white;
+}
+
+.cc-month-name {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.cc-month-num {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+/* 操作按钮区域 */
+.cc-date-filter-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.cc-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.cc-btn-secondary {
+  background: linear-gradient(135deg, rgba(107, 114, 128, 0.1), rgba(107, 114, 128, 0.05));
+  border-color: rgba(107, 114, 128, 0.2);
+  color: #6b7280;
+}
+
+.cc-btn-secondary:hover {
+  background: linear-gradient(135deg, rgba(107, 114, 128, 0.2), rgba(107, 114, 128, 0.1));
+  border-color: rgba(107, 114, 128, 0.4);
+}
+
+.cc-btn-primary {
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  border-color: #1976d2;
+  color: white;
+}
+
+.cc-btn-primary:hover {
+  background: linear-gradient(135deg, #1565c0, #1976d2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+/* 年份选择器弹窗 */
+.cc-year-picker-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* 修复弹窗层级问题 - 确保fixed定位时有正确的z-index */
+.cc-date-filter-popup[style*="position: fixed"] {
+  z-index: 2147483647 !important;
+}
+
+/* 强制修复时间筛选弹窗层级问题 */
+.cc-date-filter-popup {
+  z-index: 2147483647 !important;
+  position: fixed !important;
+}
+
+/* 确保设备卡片不会覆盖弹窗 */
+.cc-device-card {
+  z-index: auto !important;
+  position: relative !important;
+}
+
+/* 重置可能影响层级的transform属性 */
+.cc-device-card:hover {
+  z-index: auto !important;
+}
+
+.cc-year-picker-overlay.show {
+  opacity: 1;
+}
+
+.cc-year-picker {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cc-year-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  color: white;
+}
+
+.cc-year-picker-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cc-year-picker-content {
+  padding: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.cc-year-option {
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 8px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-weight: 500;
+}
+
+.cc-year-option:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #3730a3;
+}
+
+.cc-year-option.active {
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  border-color: #1976d2;
+  color: white;
+}

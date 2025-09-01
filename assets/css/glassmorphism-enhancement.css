@@ -1,0 +1,316 @@
+/**
+ * 毛玻璃拟物化设计增强样式
+ * 基于现代极简设计风格，实现柔和渐变背景、半透明元素、圆角设计等
+ */
+
+/* 全局背景渐变优化 */
+body {
+    background: linear-gradient(135deg, 
+        #667eea 0%, 
+        #764ba2 25%, 
+        #f093fb 50%, 
+        #f5576c 75%, 
+        #4facfe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 主要内容区域毛玻璃效果 */
+.cc-page-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 32px;
+    margin: 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 设备卡片毛玻璃增强 */
+.cc-device-card {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 20px !important;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.cc-device-card:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-8px) scale(1.02) !important;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+/* 设备头部毛玻璃效果 */
+.cc-device-header {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px 20px 0 0 !important;
+}
+
+/* 统计卡片毛玻璃效果 */
+.cc-stats-card {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 18px !important;
+    box-shadow: 
+        0 6px 24px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 筛选器毛玻璃效果 */
+.cc-filters-container {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    margin-bottom: 24px !important;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+/* 搜索框毛玻璃效果 */
+.cc-search-input {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 12px !important;
+    color: #2d3748 !important;
+    padding: 12px 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+.cc-search-input:focus {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-color: rgba(102, 126, 234, 0.5) !important;
+    box-shadow: 
+        0 0 0 3px rgba(102, 126, 234, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    outline: none !important;
+}
+
+.cc-search-input::placeholder {
+    color: rgba(45, 55, 72, 0.6) !important;
+}
+
+/* 按钮毛玻璃效果 */
+.cc-btn {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 10px !important;
+    color: #2d3748 !important;
+    transition: all 0.3s ease !important;
+}
+
+.cc-btn:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+.cc-btn-primary {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.cc-btn-primary:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)) !important;
+    color: white !important;
+}
+
+/* 模态框毛玻璃增强 */
+.modern-modal .modal-content {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 20px !important;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.modern-modal .modal-header {
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.8), 
+        rgba(118, 75, 162, 0.8)) !important;
+    backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.modern-modal .modal-body {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.modern-modal .modal-footer {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 表单元素毛玻璃效果 */
+.modern-form-input {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 12px !important;
+    color: #2d3748 !important;
+}
+
+.modern-form-input:focus {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-color: rgba(102, 126, 234, 0.5) !important;
+    box-shadow: 
+        0 0 0 3px rgba(102, 126, 234, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 状态指示器毛玻璃效果 */
+.cc-status-online {
+    background: rgba(34, 197, 94, 0.2) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(34, 197, 94, 0.3) !important;
+    color: #065f46 !important;
+}
+
+.cc-status-offline {
+    background: rgba(239, 68, 68, 0.2) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    color: #7f1d1d !important;
+}
+
+/* 信息项毛玻璃效果 */
+.cc-info-item {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    margin-bottom: 8px !important;
+}
+
+/* 可编辑字段悬停效果 */
+.cc-editable-field:hover {
+    background: rgba(102, 126, 234, 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .cc-page-content {
+        margin: 10px;
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .cc-device-card {
+        border-radius: 16px !important;
+    }
+    
+    .cc-device-header {
+        border-radius: 16px 16px 0 0 !important;
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, 
+            #1a202c 0%, 
+            #2d3748 25%, 
+            #4a5568 50%, 
+            #2d3748 75%, 
+            #1a202c 100%);
+    }
+    
+    .cc-page-content {
+        background: rgba(26, 32, 44, 0.3);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .cc-device-card {
+        background: rgba(26, 32, 44, 0.4) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    .cc-search-input,
+    .modern-form-input {
+        background: rgba(26, 32, 44, 0.4) !important;
+        color: #e2e8f0 !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    .cc-search-input::placeholder {
+        color: rgba(226, 232, 240, 0.6) !important;
+    }
+}
+
+/* 性能优化 */
+.cc-device-card,
+.cc-page-content,
+.modern-modal .modal-content {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* 微妙的动画效果 */
+@keyframes floatAnimation {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+.cc-device-card:hover {
+    animation: floatAnimation 2s ease-in-out infinite;
+}
+
+/* 光影效果 */
+.cc-device-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cc-device-card:hover::after {
+    opacity: 1;
+}

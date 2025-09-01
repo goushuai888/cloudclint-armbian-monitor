@@ -1,0 +1,209 @@
+/**
+ * 中性主题样式
+ * 替换紫色主题为更专业的蓝灰色主题
+ */
+
+/* 重新定义主色调变量 */
+:root {
+  /* 主色调 - 蓝灰色系 */
+  --cc-gradient-primary: linear-gradient(135deg, #475569 0%, #64748b 100%) !important;
+  --cc-gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%) !important;
+  --cc-gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%) !important;
+  --cc-gradient-danger: linear-gradient(135deg, #ef4444 0%, #f87171 100%) !important;
+  --cc-gradient-info: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%) !important;
+  
+  /* 背景色调 */
+  --cc-bg-primary: #f8fafc !important;
+  --cc-bg-secondary: #f1f5f9 !important;
+  --cc-bg-tertiary: #e2e8f0 !important;
+  
+  /* 文字颜色 */
+  --cc-text-primary: #1e293b !important;
+  --cc-text-secondary: #475569 !important;
+  --cc-text-muted: #64748b !important;
+  
+  /* 边框颜色 */
+  --cc-border-light: #e2e8f0 !important;
+  --cc-border-medium: #cbd5e1 !important;
+  --cc-border-dark: #94a3b8 !important;
+}
+
+/* 覆盖背景渐变 */
+body::before {
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(71, 85, 105, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(100, 116, 139, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.02) 0%, transparent 50%) !important;
+}
+
+/* 统计卡片主题 */
+.cc-stats-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.cc-stats-card.cc-stats-total {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%) !important;
+  color: white !important;
+}
+
+.cc-stats-card.cc-stats-online {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%) !important;
+  color: white !important;
+}
+
+.cc-stats-card.cc-stats-offline {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%) !important;
+  color: white !important;
+}
+
+.cc-stats-card.cc-stats-load {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%) !important;
+  color: white !important;
+}
+
+/* 设备卡片主题 */
+.cc-device-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 6px -1px rgba(71, 85, 105, 0.1), 0 2px 4px -1px rgba(71, 85, 105, 0.06) !important;
+}
+
+.cc-device-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(71, 85, 105, 0.1), 0 4px 6px -2px rgba(71, 85, 105, 0.05) !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* 设备状态指示器 */
+.cc-device-status.online {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%) !important;
+}
+
+.cc-device-status.offline {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%) !important;
+}
+
+/* 按钮主题 */
+.btn-primary {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%) !important;
+  border-color: #475569 !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #334155 0%, #475569 100%) !important;
+  border-color: #334155 !important;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%) !important;
+  border-color: #10b981 !important;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%) !important;
+  border-color: #ef4444 !important;
+}
+
+/* 导航栏主题 */
+.cc-navbar {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* 筛选器主题 */
+.cc-filters {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* 模态框主题 */
+.modal-content {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* 表单控件主题 */
+.form-control {
+  border-color: #e2e8f0 !important;
+  background-color: #ffffff !important;
+}
+
+.form-control:focus {
+  border-color: #475569 !important;
+  box-shadow: 0 0 0 0.2rem rgba(71, 85, 105, 0.25) !important;
+}
+
+/* 信息项主题 */
+.cc-info-item {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.cc-info-item:hover {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* 加载动画主题 */
+.cc-preloader {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%) !important;
+}
+
+/* 工具提示主题 */
+.tooltip .tooltip-inner {
+  background-color: #1e293b !important;
+}
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: #1e293b !important;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: #1e293b !important;
+}
+
+/* 下拉菜单主题 */
+.dropdown-menu {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 15px -3px rgba(71, 85, 105, 0.1), 0 4px 6px -2px rgba(71, 85, 105, 0.05) !important;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* 进度条主题 */
+.progress {
+  background-color: #e2e8f0 !important;
+}
+
+.progress-bar {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%) !important;
+}
+
+/* 徽章主题 */
+.badge-primary {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%) !important;
+}
+
+.badge-success {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%) !important;
+}
+
+.badge-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%) !important;
+}
+
+.badge-warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%) !important;
+}
+
+.badge-info {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%) !important;
+}

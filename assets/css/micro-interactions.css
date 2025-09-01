@@ -1,0 +1,574 @@
+/**
+ * 微交互优化
+ * 微妙交互元素、柔和按钮样式、简洁输入框、极简图标、低调悬停状态
+ * 现代表单设计与交互体验优化
+ */
+
+/* 微交互动画变量 */
+:root {
+  /* 缓动函数 */
+  --micro-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --micro-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --micro-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --micro-ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* 动画时长 */
+  --micro-duration-fast: 0.15s;
+  --micro-duration-normal: 0.25s;
+  --micro-duration-slow: 0.35s;
+  
+  /* 微交互颜色 */
+  --micro-hover-bg: rgba(255, 255, 255, 0.1);
+  --micro-active-bg: rgba(255, 255, 255, 0.2);
+  --micro-focus-ring: rgba(99, 102, 241, 0.2);
+  --micro-success-ring: rgba(34, 197, 94, 0.2);
+  --micro-error-ring: rgba(239, 68, 68, 0.2);
+}
+
+/* 全局微交互基础 */
+* {
+  transition: 
+    background-color var(--micro-duration-normal) var(--micro-ease-out),
+    border-color var(--micro-duration-normal) var(--micro-ease-out),
+    color var(--micro-duration-normal) var(--micro-ease-out),
+    box-shadow var(--micro-duration-normal) var(--micro-ease-out),
+    transform var(--micro-duration-normal) var(--micro-ease-out),
+    opacity var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+/* 柔和按钮样式 */
+.btn {
+  position: relative !important;
+  overflow: hidden !important;
+  transform: translateZ(0) !important;
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+/* 按钮波纹效果 */
+.btn::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  transition: width var(--micro-duration-slow) var(--micro-ease-out), 
+              height var(--micro-duration-slow) var(--micro-ease-out) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+.btn:active::before {
+  width: 300px !important;
+  height: 300px !important;
+}
+
+.btn > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* 按钮悬停微动画 */
+.btn:hover {
+  transform: translateY(-1px) scale(1.02) !important;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98) !important;
+  transition-duration: var(--micro-duration-fast) !important;
+}
+
+/* 主要按钮特殊效果 */
+.btn-primary:hover {
+  background: linear-gradient(135deg, 
+    rgba(79, 70, 229, 0.95) 0%, 
+    rgba(99, 102, 241, 0.95) 100%) !important;
+  box-shadow: 
+    0 6px 20px rgba(99, 102, 241, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 简洁输入框设计 */
+.form-control {
+  position: relative !important;
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+/* 输入框聚焦动画 */
+.form-control:focus {
+  transform: scale(1.01) !important;
+  box-shadow: 
+    0 0 0 3px var(--micro-focus-ring),
+    0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 输入框标签浮动效果 */
+.form-floating {
+  position: relative !important;
+}
+
+.form-floating > label {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  transform-origin: left top !important;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem) !important;
+  color: var(--modern-primary) !important;
+}
+
+/* 极简图标优化 */
+.bi, .icon {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  transform: translateZ(0) !important;
+}
+
+/* 图标悬停效果 */
+.btn:hover .bi,
+.btn:hover .icon {
+  transform: scale(1.1) !important;
+}
+
+/* 可点击图标 */
+.icon-clickable {
+  cursor: pointer !important;
+  padding: 4px !important;
+  border-radius: 6px !important;
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+.icon-clickable:hover {
+  background: var(--micro-hover-bg) !important;
+  transform: scale(1.1) !important;
+}
+
+.icon-clickable:active {
+  background: var(--micro-active-bg) !important;
+  transform: scale(0.95) !important;
+}
+
+/* 低调悬停状态 */
+.cc-device-card {
+  transition: all var(--micro-duration-slow) var(--micro-ease-out) !important;
+}
+
+.cc-device-card:hover {
+  transform: translateY(-4px) scale(1.005) !important;
+}
+
+/* 统计卡片微交互 */
+.cc-stats-card {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  cursor: pointer !important;
+}
+
+.cc-stats-card:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+.cc-stats-card:active {
+  transform: translateY(0) scale(0.98) !important;
+  transition-duration: var(--micro-duration-fast) !important;
+}
+
+/* 信息项微交互 */
+.cc-info-item {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  cursor: default !important;
+}
+
+.cc-info-item:hover {
+  transform: translateX(3px) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* 可编辑字段微交互 */
+.cc-editable-field {
+  position: relative !important;
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  border-radius: 4px !important;
+  padding: 2px 4px !important;
+}
+
+.cc-editable-field:hover {
+  background: rgba(99, 102, 241, 0.1) !important;
+  cursor: pointer !important;
+}
+
+.cc-editable-field:hover::after {
+  content: '✏️' !important;
+  position: absolute !important;
+  right: -20px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 0.7rem !important;
+  opacity: 0.7 !important;
+}
+
+/* 下拉菜单微交互 */
+.dropdown-menu {
+  transform: translateY(-10px) scale(0.95) !important;
+  opacity: 0 !important;
+  transition: all var(--micro-duration-normal) var(--micro-ease-bounce) !important;
+  pointer-events: none !important;
+}
+
+.dropdown-menu.show {
+  transform: translateY(0) scale(1) !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.dropdown-item {
+  transition: all var(--micro-duration-fast) var(--micro-ease-out) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.dropdown-item::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -100% !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%) !important;
+  transition: left var(--micro-duration-slow) var(--micro-ease-out) !important;
+}
+
+.dropdown-item:hover::before {
+  left: 100% !important;
+}
+
+/* 模态框微交互 */
+.modal.fade .modal-dialog {
+  transform: translateY(-50px) scale(0.9) !important;
+  transition: all var(--micro-duration-slow) var(--micro-ease-bounce) !important;
+}
+
+.modal.show .modal-dialog {
+  transform: translateY(0) scale(1) !important;
+}
+
+/* 工具提示微交互 */
+.tooltip {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+.tooltip.show {
+  animation: tooltipFadeIn var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 进度条微动画 */
+.progress-bar {
+  transition: width var(--micro-duration-slow) var(--micro-ease-out) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.progress-bar::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 100%) !important;
+  animation: progressShine 2s infinite !important;
+}
+
+@keyframes progressShine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* 徽章微交互 */
+.badge {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  cursor: default !important;
+}
+
+.badge:hover {
+  transform: scale(1.05) !important;
+}
+
+/* 状态指示器脉冲效果 */
+.cc-device-status.online {
+  position: relative !important;
+}
+
+.cc-device-status.online::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -2px !important;
+  left: -2px !important;
+  right: -2px !important;
+  bottom: -2px !important;
+  background: rgba(34, 197, 94, 0.3) !important;
+  border-radius: inherit !important;
+  animation: statusPulse 2s infinite !important;
+  z-index: -1 !important;
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* 搜索框微交互 */
+.search-container {
+  position: relative !important;
+}
+
+.search-container::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: var(--modern-primary) !important;
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  transform: translateX(-50%) !important;
+}
+
+.search-container:focus-within::after {
+  width: 100% !important;
+}
+
+/* 筛选器微交互 */
+.cc-filters-container {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+.filter-item {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  cursor: pointer !important;
+}
+
+.filter-item:hover {
+  transform: translateY(-1px) !important;
+  background: var(--micro-hover-bg) !important;
+}
+
+.filter-item.active {
+  transform: scale(1.02) !important;
+  background: var(--modern-primary) !important;
+  color: white !important;
+}
+
+/* 加载动画优化 */
+.loading-spinner {
+  animation: spin 1s linear infinite !important;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loading-dots {
+  display: inline-flex !important;
+  gap: 4px !important;
+}
+
+.loading-dots span {
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--modern-primary) !important;
+  border-radius: 50% !important;
+  animation: loadingDots 1.4s infinite ease-in-out !important;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: -0.32s !important; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s !important; }
+.loading-dots span:nth-child(3) { animation-delay: 0s !important; }
+
+@keyframes loadingDots {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 表单验证微交互 */
+.form-control.is-valid {
+  border-color: #22c55e !important;
+  box-shadow: 0 0 0 3px var(--micro-success-ring) !important;
+}
+
+.form-control.is-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px var(--micro-error-ring) !important;
+}
+
+.valid-feedback,
+.invalid-feedback {
+  animation: feedbackSlideIn var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+@keyframes feedbackSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 切换开关微交互 */
+.form-switch .form-check-input {
+  transition: all var(--micro-duration-normal) var(--micro-ease-bounce) !important;
+}
+
+.form-switch .form-check-input:checked {
+  background-color: var(--modern-primary) !important;
+  border-color: var(--modern-primary) !important;
+  transform: scale(1.05) !important;
+}
+
+/* 复选框微交互 */
+.form-check-input {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+.form-check-input:checked {
+  transform: scale(1.1) !important;
+  animation: checkboxBounce var(--micro-duration-slow) var(--micro-ease-bounce) !important;
+}
+
+@keyframes checkboxBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1.1); }
+}
+
+/* 标签页微交互 */
+.nav-tabs .nav-link {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.nav-tabs .nav-link::before {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: var(--modern-primary) !important;
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+  transform: translateX(-50%) !important;
+}
+
+.nav-tabs .nav-link:hover::before {
+  width: 80% !important;
+}
+
+.nav-tabs .nav-link.active::before {
+  width: 100% !important;
+}
+
+/* 手风琴微交互 */
+.accordion-button {
+  transition: all var(--micro-duration-normal) var(--micro-ease-out) !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background: var(--micro-hover-bg) !important;
+  transform: scale(1.01) !important;
+}
+
+.accordion-collapse {
+  transition: all var(--micro-duration-slow) var(--micro-ease-out) !important;
+}
+
+/* 响应式微交互优化 */
+@media (max-width: 768px) {
+  .btn:hover {
+    transform: none !important;
+  }
+  
+  .cc-device-card:hover {
+    transform: none !important;
+  }
+  
+  /* 触摸设备优化 */
+  .btn:active {
+    transform: scale(0.95) !important;
+  }
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 高对比度模式微交互 */
+@media (prefers-contrast: high) {
+  .btn:hover {
+    outline: 2px solid currentColor !important;
+    outline-offset: 2px !important;
+  }
+  
+  .form-control:focus {
+    outline: 2px solid var(--modern-primary) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* 性能优化 */
+.btn,
+.form-control,
+.cc-device-card,
+.cc-stats-card,
+.dropdown-menu,
+.modal-dialog {
+  will-change: transform, opacity !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+}
