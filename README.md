@@ -45,14 +45,23 @@ mysql -u root -p < sql/init.sql
 ```
 
 #### 配置数据库连接
-编辑 `config/database.php` 文件，修改数据库连接信息：
 
-```php
-private $host = 'localhost';        // 数据库主机
-private $db_name = 'armbian_monitor'; // 数据库名
-private $username = 'root';         // 数据库用户名
-private $password = '';             // 数据库密码
+复制配置模板文件：
+```bash
+cp config/db_config.example.php config/db_config.php
 ```
+
+编辑 `config/db_config.php` 文件，修改数据库连接信息：
+```php
+return [
+    'host' => 'localhost',           // 数据库主机
+    'db_name' => 'armbian_monitor',  // 数据库名
+    'username' => 'root',            // 数据库用户名
+    'password' => ''                 // 数据库密码
+];
+```
+
+**注意**: `db_config.php` 包含敏感信息，不会被提交到版本控制系统。
 
 ### 3. Web服务器配置
 

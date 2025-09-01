@@ -1,8 +1,8 @@
 # 敏感配置文件
-config/database.php
-config/config.php
+config/db_config.php
 .env
 .env.local
+.env.production
 
 # 日志文件
 *.log
