@@ -1,0 +1,118 @@
+/* 模态框层级修复 - 确保所有弹窗都显示在最顶层 */
+
+/* Bootstrap 模态框 z-index 修复 */
+.modal {
+  z-index: 2147483647 !important;
+}
+
+.modal-backdrop {
+  z-index: 2147483646 !important;
+}
+
+/* 编辑弹窗特定修复 */
+#editUserModal,
+#orderNumberModal,
+#createdTimeModal,
+.modern-modal {
+  z-index: 2147483647 !important;
+}
+
+#editUserModal .modal-dialog,
+#orderNumberModal .modal-dialog,
+#createdTimeModal .modal-dialog,
+.modern-modal .modal-dialog {
+  z-index: 2147483647 !important;
+}
+
+#editUserModal .modal-content,
+#orderNumberModal .modal-content,
+#createdTimeModal .modal-content,
+.modern-modal .modal-content {
+  z-index: 2147483647 !important;
+  position: relative !important;
+}
+
+/* 确保模态框内容不被其他元素遮挡 */
+.modal-header,
+.modal-body,
+.modal-footer {
+  z-index: 2147483647 !important;
+  position: relative !important;
+}
+
+/* 防止设备卡片创建新的层叠上下文影响弹窗 */
+.cc-device-card,
+.cc-device-card:hover,
+.cc-magnetic,
+.cc-magnetic:hover {
+  z-index: auto !important;
+}
+
+/* 确保时间筛选弹窗也在最顶层 */
+.cc-date-filter-popup {
+  z-index: 2147483647 !important;
+  position: fixed !important;
+}
+
+/* 通用弹窗层级修复 */
+[class*="modal"],
+[class*="popup"],
+[class*="dropdown"] {
+  z-index: 2147483647 !important;
+}
+
+/* 确保所有弹窗类型都有正确的层级 */
+.modal.show,
+.modal.fade.show {
+  z-index: 2147483647 !important;
+}
+
+/* 移动端模态框修复 */
+@media (max-width: 768px) {
+  .modal,
+  .modal.show,
+  .modal.fade.show {
+    z-index: 2147483647 !important;
+  }
+  
+  .modal-backdrop {
+    z-index: 2147483646 !important;
+  }
+}
+
+/* 确保弹窗在所有情况下都可见 */
+.modal[style*="display: block"] {
+  z-index: 2147483647 !important;
+}
+
+/* 修复可能的层叠上下文问题 */
+body.modal-open {
+  position: relative;
+}
+
+/* 确保弹窗容器有正确的层级 */
+.modal-dialog-centered {
+  z-index: inherit;
+}
+
+/* 防止其他元素干扰弹窗显示 */
+.navbar,
+.cc-navbar,
+.header {
+  z-index: 1000 !important;
+}
+
+.cc-device-grid,
+.cc-devices-grid {
+  z-index: auto !important;
+}
+
+/* 确保弹窗按钮可点击 */
+.modal .btn,
+.modal button,
+.modal input,
+.modal select,
+.modal textarea {
+  z-index: inherit;
+  position: relative;
+}

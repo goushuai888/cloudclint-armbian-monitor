@@ -1,0 +1,172 @@
+/**
+ * 增强网格布局
+ * 针对大屏幕优化，提高空间利用率
+ */
+
+/* 16寸显示器优化 - 显示更多设备 */
+@media (min-width: 1280px) and (max-width: 1920px) {
+  .cc-devices-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 0.875rem !important;
+    max-width: 100% !important;
+  }
+}
+
+/* 更大屏幕优化 */
+@media (min-width: 1921px) {
+  .cc-devices-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+    gap: 1rem !important;
+  }
+}
+
+/* 设备卡片内容优化 - 减少内部空间浪费 */
+.cc-device-card {
+  min-height: auto !important;
+  height: fit-content !important;
+}
+
+.cc-device-header {
+  padding: 0.75rem 1rem !important;
+  min-height: auto !important;
+}
+
+.cc-device-body {
+  padding: 0.75rem 1rem !important;
+}
+
+.cc-device-footer {
+  padding: 0.75rem 1rem !important;
+  min-height: auto !important;
+}
+
+/* 设备信息网格优化 */
+.cc-device-info {
+  gap: 0.5rem !important;
+}
+
+.cc-info-item {
+  padding: 0.5rem 0.75rem !important;
+  min-height: auto !important;
+}
+
+.cc-info-label {
+  min-width: 60px !important;
+  max-width: 80px !important;
+  font-size: 0.75rem !important;
+}
+
+.cc-info-value {
+  font-size: 0.8rem !important;
+  line-height: 1.2 !important;
+}
+
+/* 设备名称和状态优化 */
+.cc-device-name {
+  font-size: 1rem !important;
+  line-height: 1.3 !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.cc-device-status {
+  font-size: 0.75rem !important;
+  padding: 0.25rem 0.5rem !important;
+}
+
+/* 设备操作按钮优化 */
+.cc-device-actions {
+  gap: 0.5rem !important;
+}
+
+.cc-device-actions .btn {
+  padding: 0.375rem 0.75rem !important;
+  font-size: 0.8rem !important;
+}
+
+/* 资源使用情况优化 */
+.cc-resources-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 0.5rem !important;
+}
+
+.cc-resource-item {
+  padding: 0.5rem !important;
+}
+
+.cc-resource-label {
+  font-size: 0.7rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.cc-resource-value {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+}
+
+.cc-resource-bar {
+  height: 4px !important;
+  margin-top: 0.25rem !important;
+}
+
+/* 设备元信息优化 */
+.cc-device-meta {
+  padding: 0.5rem 1rem !important;
+  font-size: 0.7rem !important;
+  background: rgba(248, 250, 252, 0.8) !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+/* 紧凑模式 - 进一步优化空间 */
+@media (min-width: 1440px) {
+  .cc-devices-grid.compact {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+  
+  .compact .cc-device-card {
+    font-size: 0.9rem !important;
+  }
+  
+  .compact .cc-device-header {
+    padding: 0.625rem 0.875rem !important;
+  }
+  
+  .compact .cc-device-body {
+    padding: 0.625rem 0.875rem !important;
+  }
+  
+  .compact .cc-device-footer {
+    padding: 0.625rem 0.875rem !important;
+  }
+  
+  .compact .cc-info-item {
+    padding: 0.375rem 0.625rem !important;
+  }
+  
+  .compact .cc-device-name {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* 超宽屏优化 */
+@media (min-width: 2560px) {
+  .cc-devices-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+}
+
+/* 容器最大宽度优化 */
+.cc-main-container {
+  max-width: 100% !important;
+  padding: 0 1rem !important;
+}
+
+.cc-content-wrapper {
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* 移除不必要的边距 */
+.cc-devices-section {
+  margin

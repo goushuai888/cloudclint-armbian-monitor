@@ -1,0 +1,393 @@
+/**
+ * 设备卡片空间优化样式
+ * 专注于节省垂直和水平空间，提升显示兼容性
+ */
+
+/* 设备卡片主容器 - 空间优化 */
+.cc-device-card {
+  /* 减少内边距和外边距 */
+  margin: 0 !important;
+  padding: 0 !important;
+  
+  /* 优化边框和圆角 */
+  border-radius: 8px !important;
+  border-width: 1px !important;
+  
+  /* 减少阴影效果以节省视觉空间 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  
+  /* 确保紧凑布局 */
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.cc-device-card:hover {
+  /* 减少悬停效果的空间占用 */
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* 设备头部 - 空间优化 */
+.cc-device-header {
+  padding: 8px 12px 6px !important;
+  margin: 0 !important;
+  border-bottom-width: 1px !important;
+}
+
+.cc-device-title-section {
+  gap: 8px !important;
+  margin: 0 !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+
+.cc-device-name {
+  font-size: 1rem !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+/* 状态指示器 - 紧凑化 */
+.cc-device-status {
+  padding: 3px 8px !important;
+  font-size: 0.75rem !important;
+  border-radius: 12px !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+}
+
+.cc-device-status i {
+  font-size: 0.75rem !important;
+}
+
+/* 设备信息区域 - 空间优化 */
+.cc-device-info {
+  padding: 8px 12px !important;
+  margin: 0 !important;
+  flex: 1 !important;
+}
+
+/* 信息项 - 紧凑布局 */
+.cc-device-primary-info,
+.cc-device-secondary-info,
+.cc-device-remarks {
+  margin-bottom: 1px !important;
+}
+
+.cc-device-remarks {
+  margin-bottom: 2px !important;
+}
+
+.cc-info-item {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  margin-bottom: 1px !important;
+  padding: 0.5px 0 !important;
+  gap: 8px !important;
+}
+
+.cc-info-label {
+  font-size: 0.75rem !important;
+  line-height: 1.2 !important;
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+  flex-shrink: 0 !important;
+  min-width: 60px !important;
+  max-width: 80px !important;
+}
+
+.cc-info-value {
+  font-size: 0.8rem !important;
+  line-height: 1.2 !important;
+  color: #374151 !important;
+  font-weight: 500 !important;
+  flex: 1 !important;
+  text-align: left !important;
+  word-break: break-all !important;
+  min-width: 0 !important;
+}
+
+/* 可编辑字段 - 紧凑化 */
+.cc-editable-field {
+  position: relative !important;
+  cursor: pointer !important;
+  padding: 1px 16px 1px 2px !important;
+  border-radius: 4px !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.cc-edit-icon {
+  position: absolute !important;
+  right: 2px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 0.7rem !important;
+  opacity: 0.6 !important;
+}
+
+/* 资源监控 - 空间优化 */
+.cc-device-resources {
+  margin-top: 6px !important;
+  padding: 6px 8px !important;
+  border-radius: 6px !important;
+  background: rgba(248, 250, 252, 0.8) !important;
+  border: 1px solid rgba(226, 232, 240, 0.6) !important;
+}
+
+.cc-resources-title {
+  font-size: 0.85rem !important;
+  margin: 0 0 8px 0 !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+}
+
+.cc-resources-title::before {
+  font-size: 0.85rem !important;
+  margin-right: 4px !important;
+}
+
+.cc-resources-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
+  gap: 4px !important;
+}
+
+/* 资源项 - 紧凑化 */
+.cc-resource-item {
+  background: white !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  border-radius: 4px !important;
+  padding: 4px !important;
+  text-align: center !important;
+}
+
+.cc-resource-label {
+  font-size: 0.65rem !important;
+  color: #6b7280 !important;
+  margin-bottom: 2px !important;
+  font-weight: 500 !important;
+  line-height: 1.1 !important;
+}
+
+.cc-resource-value {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.cc-resource-text {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  line-height: 1.1 !important;
+}
+
+/* 进度条 - 紧凑化 */
+.cc-progress-bar {
+  width: 100% !important;
+  height: 3px !important;
+  background: #e5e7eb !important;
+  border-radius: 2px !important;
+  overflow: hidden !important;
+}
+
+.cc-progress-fill {
+  height: 100% !important;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6) !important;
+  border-radius: 2px !important;
+  transition: width 0.3s ease !important;
+}
+
+/* 温度进度条特殊样式 */
+.cc-temp-fill {
+  background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444) !important;
+}
+
+/* 设备底部 - 空间优化 */
+.cc-device-footer {
+  padding: 6px 12px 8px !important;
+  margin: 0 !important;
+  border-top: 1px solid rgba(243, 244, 246, 0.8) !important;
+  background: rgba(250, 250, 250, 0.5) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+.cc-device-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: 0.7rem !important;
+  color: #6b7280 !important;
+}
+
+.cc-device-meta i {
+  font-size: 0.7rem !important;
+  color: #9ca3af !important;
+}
+
+/* 操作按钮 - 紧凑化 */
+.cc-device-actions {
+  display: flex !important;
+  gap: 4px !important;
+  align-items: center !important;
+}
+
+.cc-btn-danger {
+  padding: 4px 8px !important;
+  font-size: 0.7rem !important;
+  border-radius: 4px !important;
+  gap: 3px !important;
+}
+
+.cc-btn-danger i {
+  font-size: 0.7rem !important;
+}
+
+/* 响应式优化 - 移动端进一步压缩 */
+@media (max-width: 768px) {
+  .cc-device-card {
+    border-radius: 6px !important;
+  }
+  
+  .cc-device-header {
+    padding: 6px 10px 4px !important;
+  }
+  
+  .cc-device-info {
+    padding: 6px 10px !important;
+  }
+  
+  .cc-device-footer {
+    padding: 4px 10px 6px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+  }
+  
+  .cc-device-name {
+    font-size: 0.9rem !important;
+  }
+  
+  .cc-info-label {
+    font-size: 0.7rem !important;
+    min-width: 50px !important;
+    max-width: 70px !important;
+  }
+  
+  .cc-info-value {
+    font-size: 0.75rem !important;
+  }
+  
+  .cc-resources-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .cc-device-actions {
+    justify-content: center !important;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+  .cc-device-header {
+    padding: 4px 8px 3px !important;
+  }
+  
+  .cc-device-info {
+    padding: 4px 8px !important;
+  }
+  
+  .cc-device-footer {
+    padding: 3px 8px 4px !important;
+  }
+  
+  .cc-device-name {
+    font-size: 0.85rem !important;
+  }
+  
+  .cc-device-status {
+    padding: 2px 6px !important;
+    font-size: 0.7rem !important;
+  }
+  
+  .cc-info-label {
+    font-size: 0.65rem !important;
+    min-width: 45px !important;
+    max-width: 60px !important;
+  }
+  
+  .cc-info-value {
+    font-size: 0.7rem !important;
+  }
+  
+  .cc-resource-label {
+    font-size: 0.6rem !important;
+  }
+  
+  .cc-resource-text {
+    font-size: 0.7rem !important;
+  }
+}
+
+/* 网格布局优化 */
+.cc-devices-grid {
+  gap: 8px !important;
+  margin: 0 0 1rem 0 !important;
+}
+
+@media (max-width: 768px) {
+  .cc-devices-grid {
+    gap: 6px !important;
+    margin: 0 0 0.5rem 0 !important;
+  }
+}
+
+/* 确保所有动画效果不占用额外空间 */
+.cc-device-card,
+.cc-device-card * {
+  box-sizing: border-box !important;
+}
+
+/* 隐藏不必要的装饰元素在小屏幕上 */
+@media (max-width: 480px) {
+  .cc-device-card::before {
+    display: none !important;
+  }
+  
+  .cc-device-resources::before {
+    display: none !important;
+  }
+  
+  .cc-resource-item::before {
+    display: none !important;
+  }
+}
+
+/* 文本溢出处理 */
+.cc-device-name,
+.cc-info-value {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* 备注字段特殊处理 */
+.cc-remarks-field {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  max-height: 2.4em !important;
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+}

@@ -1,0 +1,65 @@
+/**
+ * 设备网格布局样式
+ * 响应式设备卡片网格系统 - 优化版
+ */
+
+/* 设备网格容器 - 基础样式 */
+.cc-devices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 响应式断点 - 移动端优先 */
+@media (max-width: 480px) {
+  .cc-devices-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 0 0 1rem 0;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .cc-devices-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cc-devices-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .cc-devices-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1441px) {
+  .cc-devices-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* 设备卡片基础样式 */
+.cc-device-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 确保网格项目不会溢出 */
+.cc-devices-grid > * {
+  min-width: 0;
+  overflow: hidden;
+}

@@ -1,0 +1,67 @@
+// app global css in SCSS form
+
+// 全局字体优化：使用系统字体栈，减少网络请求
+:root {
+  --q-primary: #1976d2;
+  --q-secondary: #26a69a;
+  --q-accent: #9c27b0;
+
+  // 使用系统字体，避免加载外部Roboto字体
+  font-family:
+    -apple-system,
+    // iOS Safari
+    BlinkMacSystemFont,
+    // macOS Safari
+    'Segoe UI',
+    // Windows
+    Roboto,
+    // Android
+    'Helvetica Neue',
+    // macOS older versions
+    'PingFang SC',
+    // macOS 中文
+    'Hiragino Sans GB',
+    // macOS 中文备用
+    'Microsoft YaHei',
+    // Windows 中文
+    '微软雅黑',
+    // Windows 中文备用
+    Arial,
+    // 通用备用
+    sans-serif; // 最终备用
+}
+
+// 应用全局字体
+body {
+  font-family: inherit;
+  font-display: swap; // 字体显示策略，立即显示备用字体
+}
+
+// 确保 Material Icons 字体正确加载
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+// Quasar 图标组件优化
+.q-icon {
+  &.material-icons {
+    font-family: 'Material Icons' !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+}

@@ -1,0 +1,65 @@
+/* 修复设备卡片选择框问题 */
+
+/* 防止设备卡片出现意外的选中边框 */
+.cc-device-card {
+    /* 移除默认的焦点轮廓，使用自定义样式 */
+    outline: none;
+    /* 确保没有意外的边框 */
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* 自定义焦点样式，避免浏览器默认的选中框 */
+.cc-device-card:focus {
+    outline: none;
+    /* 使用阴影代替边框来表示焦点 */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* 确保点击时不会出现选中框 */
+.cc-device-card:active {
+    outline: none;
+}
+
+/* 移除可能的选中状态样式 */
+.cc-device-card.selected {
+    outline: none;
+    /* 如果需要选中状态，使用背景色或阴影 */
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* 确保设备卡片内的元素不会触发选中框 */
+.cc-device-card *:focus {
+    outline: none;
+}
+
+/* 移除可能的用户选择高亮 */
+.cc-device-card {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 确保悬停效果正常 */
+.cc-device-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 移除任何可能的输入框选中样式 */
+.cc-device-card input[type="checkbox"],
+.cc-device-card input[type="radio"] {
+    display: none;
+}
+
+/* 确保链接和按钮不会触发选中框 */
+.cc-device-card a,
+.cc-device-card button {
+    outline: none;
+}
+
+.cc-device-card a:focus,
+.cc-device-card button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}

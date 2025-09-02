@@ -1,0 +1,352 @@
+/**
+ * 设备卡片精致化样式优化
+ * 专注于提升用户体验和视觉美感
+ */
+
+/* ======================
+   设备主体容器优化
+   ====================== */
+.cc-device-body {
+  padding: var(--cc-space-2);
+  background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
+  border-radius: var(--cc-radius-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.cc-device-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(59, 130, 246, 0.3) 20%, 
+    rgba(99, 102, 241, 0.4) 50%, 
+    rgba(59, 130, 246, 0.3) 80%, 
+    transparent 100%);
+}
+
+/* ======================
+   备注区域精致化
+   ====================== */
+.cc-remarks-section {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.9) 0%, 
+    rgba(248, 250, 252, 0.95) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: var(--cc-radius-xl);
+  padding: var(--cc-space-2);
+  margin-bottom: var(--cc-space-2);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  box-shadow: 
+    0 4px 16px rgba(59, 130, 246, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cc-remarks-section:hover {
+  transform: none;
+  box-shadow: 
+    0 8px 32px rgba(59, 130, 246, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.cc-remarks-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6 0%, #1e40af 25%, #2563eb 50%, #1e40af 75%, #3b82f6 100%);
+  background-size: 200% 100%;
+  animation: gradient-flow 4s ease-in-out infinite;
+}
+
+@keyframes gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ======================
+   区域标题优化
+   ====================== */
+.cc-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--cc-space-2);
+  padding: var(--cc-space-1) var(--cc-space-2);
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.06) 0%, 
+    rgba(99, 102, 241, 0.08) 100%);
+  border-radius: var(--cc-radius-lg);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.cc-section-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    var(--cc-primary-500) 0%, 
+    var(--cc-info-500) 50%, 
+    var(--cc-primary-500) 100%);
+  opacity: 0.6;
+}
+
+.cc-section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--cc-space-3);
+  font-size: var(--cc-text-base);
+  font-weight: var(--cc-font-bold);
+  color: var(--cc-gray-800);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+/* ======================
+   图标精致化
+   ====================== */
+.cc-section-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #2563eb 100%);
+  border-radius: 10px;
+  padding: 4px;
+  box-shadow: 
+    0 4px 12px rgba(102, 126, 234, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cc-section-icon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 70%);
+  transform: rotate(-45deg);
+  transition: transform 0.6s ease;
+}
+
+.cc-section-title:hover .cc-section-icon {
+  transform: scale(1.05);
+  box-shadow: 
+    0 8px 24px rgba(102, 126, 234, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.cc-section-title:hover .cc-section-icon::before {
+  transform: rotate(-45deg) translate(100%, 100%);
+}
+
+/* ======================
+   编辑按钮精致化
+   ====================== */
+.remarks-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.1) 0%, 
+    rgba(99, 102, 241, 0.15) 100%);
+  color: var(--cc-primary-600);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 16px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 
+    0 2px 8px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.remarks-edit-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    transparent 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.remarks-edit-btn:hover {
+  transform: scale(1.02);
+  background: linear-gradient(135deg, 
+    var(--cc-primary-500) 0%, 
+    var(--cc-primary-600) 100%);
+  color: white;
+  border-color: var(--cc-primary-500);
+  box-shadow: 
+    0 8px 24px rgba(59, 130, 246, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.remarks-edit-btn:hover::before {
+  opacity: 1;
+}
+
+.remarks-edit-btn:active {
+  transform: translateY(-1px) scale(1.02);
+  transition: all 0.1s ease;
+}
+
+/* ======================
+   备注内容优化
+   ====================== */
+.cc-remarks-content {
+  position: relative;
+}
+
+.cc-remarks-text {
+  font-size: var(--cc-text-sm);
+  line-height: 1.6;
+  color: var(--cc-gray-700);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.8) 0%, 
+    rgba(248, 250, 252, 0.9) 100%);
+  padding: var(--cc-space-2);
+  border-radius: var(--cc-radius-lg);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  box-shadow: 
+    0 2px 8px rgba(59, 130, 246, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.cc-remarks-text:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(248, 250, 252, 1) 100%);
+  border-color: rgba(59, 130, 246, 0.2);
+  box-shadow: 
+    0 4px 16px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.cc-remarks-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    var(--cc-primary-500) 0%, 
+    var(--cc-info-500) 50%, 
+    var(--cc-primary-500) 100%);
+  border-radius: 0 2px 2px 0;
+}
+
+/* ======================
+   微交互动画
+   ====================== */
+@keyframes subtle-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 4px 16px rgba(59, 130, 246, 0.08),
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  50% { 
+    box-shadow: 
+      0 6px 20px rgba(59, 130, 246, 0.12),
+      0 3px 10px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+}
+
+.cc-remarks-section:focus-within {
+  animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+/* ======================
+   响应式优化
+   ====================== */
+@media (max-width: 768px) {
+  .cc-device-body {
+    padding: var(--cc-space-2);
+  }
+  
+  .cc-remarks-section {
+    padding: var(--cc-space-2);
+    margin-bottom: var(--cc-space-3);
+  }
+  
+  .cc-section-header {
+    padding: var(--cc-space-2);
+  }
+  
+  .cc-section-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .remarks-edit-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+  
+  .cc-remarks-text {
+    padding: var(--cc-space-2);
+    font-size: var(--cc-text-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .cc-section-header {
+    flex-direction: column;
+    gap: var(--cc-space-2);
+    align-items: stretch;
+  }
+  
+  .remarks-edit-btn {
+    align-self: flex-end;
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+}

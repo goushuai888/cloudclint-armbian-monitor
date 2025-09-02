@@ -1,0 +1,100 @@
+/* 弹窗层级强制修复 - 确保所有弹窗都显示在最顶层 */
+
+/* 时间筛选弹窗强制最高层级 */
+.cc-date-filter-popup,
+.cc-date-filter-popup.show,
+#dateFilterPopup,
+#dateFilterPopup.show {
+  z-index: 2147483647 !important;
+  position: fixed !important;
+  isolation: isolate !important;
+}
+
+/* 编辑弹窗强制最高层级 */
+.modal,
+.modal.show,
+.modal.fade.show,
+#editUserModal,
+#orderNumberModal,
+#createdTimeModal {
+  z-index: 2147483647 !important;
+  isolation: isolate !important;
+}
+
+/* 模态框背景 */
+.modal-backdrop {
+  z-index: 2147483646 !important;
+}
+
+/* 防止任何元素创建新的层叠上下文 */
+.cc-device-card,
+.cc-device-card *,
+.cc-device-grid,
+.cc-device-grid *,
+.cc-stats-card,
+.cc-stats-card *,
+.cc-magnetic,
+.cc-magnetic * {
+  z-index: auto !important;
+  transform: none !important;
+  will-change: auto !important;
+  isolation: auto !important;
+}
+
+/* 确保容器不会影响弹窗 */
+.cc-devices-grid,
+.cc-stats-grid,
+.container,
+.container-fluid {
+  z-index: auto !important;
+  isolation: auto !important;
+}
+
+/* 强制重置可能影响层级的属性 */
+* {
+  /* 重置可能创建层叠上下文的属性 */
+}
+
+*:not(.cc-date-filter-popup):not(.modal):not(.modal-backdrop):not([class*="popup"]):not([class*="dropdown"]) {
+  z-index: auto !important;
+}
+
+/* 确保弹窗内容可交互 */
+.cc-date-filter-popup *,
+.modal * {
+  pointer-events: auto !important;
+}
+
+/* 移动端特殊处理 */
+@media (max-width: 768px) {
+  .cc-date-filter-popup,
+  .cc-date-filter-popup.show {
+    z-index: 2147483647 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+}
+
+/* 确保弹窗显示时页面其他元素不会干扰 */
+body.modal-open .cc-device-card,
+body.modal-open .cc-stats-card {
+  z-index: auto !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* 强制弹窗在最顶层 */
+.cc-date-filter-popup[style],
+.modal[style] {
+  z-index: 2147483647 !important;
+}
+
+/* 防止任何内联样式覆盖z-index */
+[style*="z-index"]:not(.cc-date-filter-popup):not(.modal):not(.modal-backdrop) {
+  z-index: auto !important;
+}
